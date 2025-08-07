@@ -1,0 +1,107 @@
+[
+  {
+    "image": "https://i.ibb.co/XpVtnX2/apartment1.jpg",
+    "floor": 1,
+    "block": "A",
+    "number": "A101",
+    "rent": 1200
+  },
+  {
+    "image": "https://i.ibb.co/dPKg2m9/apartment2.jpg",
+    "floor": 1,
+    "block": "A",
+    "number": "A102",
+    "rent": 1250
+  },
+  {
+    "image": "https://i.ibb.co/Jd5qM7m/apartment3.jpg",
+    "floor": 2,
+    "block": "A",
+    "number": "A201",
+    "rent": 1300
+  },
+  {
+    "image": "https://i.ibb.co/TmN7gCc/apartment4.jpg",
+    "floor": 2,
+    "block": "B",
+    "number": "B201",
+    "rent": 1350
+  },
+  {
+    "image": "https://i.ibb.co/k9B3f0h/apartment5.jpg",
+    "floor": 3,
+    "block": "B",
+    "number": "B301",
+    "rent": 1400
+  },
+  {
+    "image": "https://i.ibb.co/V9kbJd6/apartment6.jpg",
+    "floor": 3,
+    "block": "C",
+    "number": "C301",
+    "rent": 1450
+  },
+  {
+    "image": "https://i.ibb.co/H2rRg8p/apartment7.jpg",
+    "floor": 4,
+    "block": "C",
+    "number": "C401",
+    "rent": 1500
+  },
+  {
+    "image": "https://i.ibb.co/5Mjg7Xz/apartment8.jpg",
+    "floor": 4,
+    "block": "D",
+    "number": "D401",
+    "rent": 1550
+  },
+  {
+    "image": "https://i.ibb.co/4RGxjYM/apartment9.jpg",
+    "floor": 5,
+    "block": "D",
+    "number": "D501",
+    "rent": 1600
+  },
+  {
+    "image": "https://i.ibb.co/FgFCZkm/apartment10.jpg",
+    "floor": 5,
+    "block": "E",
+    "number": "E501",
+    "rent": 1650
+  },
+  {
+    "image": "https://i.ibb.co/YyMVQzv/apartment11.jpg",
+    "floor": 6,
+    "block": "E",
+    "number": "E601",
+    "rent": 1700
+  },
+  {
+    "image": "https://i.ibb.co/gVcqG9r/apartment12.jpg",
+    "floor": 6,
+    "block": "F",
+    "number": "F601",
+    "rent": 1750
+  },
+  {
+    "image": "https://i.ibb.co/SyNv8rM/apartment13.jpg",
+    "floor": 1,
+    "block": "F",
+    "number": "F101",
+    "rent": 1100
+  },
+  {
+    "image": "https://i.ibb.co/bWf7Z8X/apartment14.jpg",
+    "floor": 2,
+    "block": "G",
+    "number": "G201",
+    "rent": 1800
+  },
+  {
+    "image": "https://i.ibb.co/xHFhmNq/apartment15.jpg",
+    "floor": 3,
+    "block": "G",
+    "number": "G301",
+    "rent": 1900
+  }
+]
