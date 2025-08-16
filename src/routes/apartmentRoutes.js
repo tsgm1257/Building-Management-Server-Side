@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const {
   getApartments,
+  getApartmentById, // <-- add this
   seedApartments,
 } = require("../controllers/apartmentController");
 
-// Get apartments
 router.get("/", getApartments);
-
 router.post("/seed", seedApartments);
+router.get("/:id", getApartmentById);
 
 module.exports = router;
