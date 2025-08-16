@@ -3,73 +3,98 @@ const { getDB } = require("../db");
 const saveUser = async (req, res) => {
   try {
     const db = getDB();
-    const { name, email, photoURL } = req.body;
-
-    console.log("Saving user:", { name, email, photoURL });
+    const { name, email, photoURL, phone, address } = req.body;
 
     if (!email) {
       return res.status(400).json({ error: "Email is required" });
     }
-
     if (!name) {
       return res.status(400).json({ error: "Name is required" });
     }
 
-    // Check if user already exists
-    const existingUser = await db.collection("users").findOne({ email });
+    const users = db.collection("users");
+    const result = await users.findOneAndUpdate(
+      { email },
+      {
+        $set: {
+          name,
+          email,
+          photoURL: photoURL || null,
+          phone: phone || "",
+          address: address || "",
+        },
+        $setOnInsert: {
+          role: "user",
+          createdAt: new Date(),
+        },
+      },
+      { upsert: true, returnDocument: "after" }
+    );
 
-    if (existingUser) {
-      console.log("User already exists:", existingUser);
-      return res.status(200).json({
-        message: "User already exists",
-        user: existingUser,
-      });
-    }
-
-    // Insert new user
-    const result = await db.collection("users").insertOne({
-      name,
-      email,
-      photoURL: photoURL || null,
-      role: "user",
-      createdAt: new Date(),
-    });
-
-    console.log("User created successfully:", result);
-
-    res.status(201).json({
-      message: "User created successfully",
-      userId: result.insertedId,
+    res.json({
+      message: "User saved",
+      user: {
+        name: result.value.name,
+        email: result.value.email,
+        photoURL: result.value.photoURL || "",
+        phone: result.value.phone || "",
+        address: result.value.address || "",
+        role: result.value.role || "user",
+      },
     });
   } catch (err) {
     console.error("Save user error:", err);
-    res.status(500).json({ error: "Failed to save user: " + err.message });
+    res.status(500).json({ error: "Failed to save user" });
   }
 };
 
 const getUserRole = async (req, res) => {
   try {
     const db = getDB();
-    // Use the email from the verified token instead of query parameter
-    const email = req.user.email;
-
-    console.log("Fetching role for email:", email);
-
-    if (!email) return res.status(400).json({ error: "Email is required" });
+    const email = req.userEmail; // set by verifyToken
+    if (!email) return res.status(401).json({ error: "Unauthorized" });
 
     const user = await db.collection("users").findOne({ email });
     if (!user) {
-      console.log("User not found, returning default role");
-      // If user not found, return default role instead of error
       return res.json({ role: "user" });
     }
-
-    console.log("User found:", user);
-    res.json({ role: user.role });
+    res.json({ role: user.role || "user" });
   } catch (err) {
     console.error("Role fetch error:", err);
     res.status(500).json({ error: "Failed to fetch role" });
   }
 };
 
-module.exports = { saveUser, getUserRole };
+const getMe = async (req, res) => {
+  try {
+    const db = getDB();
+    const email = req.userEmail;
+    if (!email) return res.status(401).json({ error: "Unauthorized" });
+
+    const user = await db.collection("users").findOne({ email });
+    if (!user) {
+      return res.json({
+        name: req.userName || "",
+        email,
+        photoURL: "",
+        phone: "",
+        address: "",
+        role: "user",
+      });
+    }
+
+    res.json({
+      name: user.name || "",
+      email: user.email,
+      photoURL: user.photoURL || "",
+      phone: user.phone || "",
+      address: user.address || "",
+      role: user.role || "user",
+    });
+  } catch (err) {
+    console.error("getMe error:", err);
+    res.status(500).json({ error: "Failed to fetch user" });
+  }
+};
+
+module.exports = { saveUser, getUserRole, getMe };
