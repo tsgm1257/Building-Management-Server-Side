@@ -6,7 +6,7 @@ This is the backend API of the Building Management System. It manages authentica
 
 ## Live API
 
-[https://building-management-server-woad-two.vercel.app](https://building-management-server-woad-two.vercel.app)
+[https://building-management-server-side-woad.vercel.app](https://building-management-server-side-woad.vercel.app)
 
 ---
 
