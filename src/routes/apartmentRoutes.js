@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   getApartments,
-  getApartmentById, // <-- add this
+  getApartmentById,
   seedApartments,
 } = require("../controllers/apartmentController");
 
