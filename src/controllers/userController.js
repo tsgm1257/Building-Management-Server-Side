@@ -50,7 +50,7 @@ const saveUser = async (req, res) => {
 const getUserRole = async (req, res) => {
   try {
     const db = getDB();
-    // Use the email from the verified token instead of query parameter
+    
     const email = req.user.email;
 
     console.log("Fetching role for email:", email);
